@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEUROTECH – Brain vs Computer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+</head>
+<body>
+
+<canvas id="scene"></canvas>
+<div class="vignette"></div>
+
+<header class="topbar">
+  <div class="logo">NEURO<span>TECH</span></div>
+  <nav>
+    <button class="nav-btn" data-group="home">Home</button>
+    <button class="nav-btn" data-group="neuron">Neuron</button>
+    <button class="nav-btn" data-group="network">Network</button>
+    <button class="nav-btn" data-group="sim">Simulation</button>
+    <button class="nav-btn" data-group="compare">Brain vs Computer</button>
+  </nav>
+  <div class="zoom">
+    <button class="zbtn" id="zoom-out" title="Zoom out">−</button>
+    <button class="zbtn" id="zoom-in" title="Zoom in">+</button>
+    <button class="zbtn wide" id="zoom-reset" title="Reset camera">⟲ Reset</button>
+  </div>
+</header>
+
+<!-- Shows whether the animation is running (appears over the 3D area in network and simulation) -->
+<div class="runbadge" id="runBadge"></div>
+
+<!-- ===================== HOME ===================== -->
+<section class="sec" id="home" data-view="home" data-group="home">
+  <div class="hero-text">
+    <div class="eyebrow">Biology × Computer Science · Interactive 3D</div>
+    <h1>NEURO<span>TECH</span></h1>
+    <p class="lead">Brain vs Computer. Watch a real neuron send a signal, watch an artificial network calculate an answer,
+    and see how the brain and a computer differ.</p>
+    <div class="stats">
+      <div><b>~86 billion</b><span>neurons in your brain</span></div>
+      <div><b>~100 trillion</b><span>connections between them</span></div>
+      <div><b>~20 watts</b><span>power the brain uses</span></div>
+    </div>
+    <div class="chips">
+      <div class="chip"><b>The biology</b><span>A neuron collects chemical messages on its dendrites and adds them up in the cell body. It fires an electrical pulse only when a threshold is reached. The pulse travels down the axon and crosses a synapse to the next cell.</span></div>
+      <div class="chip"><b>The computer model</b><span>An artificial neuron multiplies its inputs by weights, adds a bias, and passes the total through an activation function. Layers of these units form a neural network that learns by adjusting its weights.</span></div>
+      <div class="chip"><b>The big difference</b><span>The brain has about 86 billion slow, noisy cells and runs on about 20 watts. A computer model uses fast, exact arithmetic on a processor that needs far more power.</span></div>
+      <div class="chip"><b>Why compare them</b><span>Both take in information, process it through connected units and produce a response. Studying the brain inspired neural networks, and comparing the two shows what each does well.</span></div>
+    </div>
+  <div class="scroll-cue">Scroll down ↓</div>
+</section>
+
+<!-- ===================== NEURON ===================== -->
+<section class="sec" id="neuron" data-view="neuron" data-group="neuron">
+  <div class="panel">
+    <div class="eyebrow">Section 2 · Biology</div>
+    <h2>The Biological Neuron</h2>
+    <p>A neuron is a cell built to carry messages. It receives signals, decides whether they are strong enough,
+    and passes an electrical pulse along a long fibre to the next cell.</p>
+
+    <h3>Parts of a neuron</h3>
+    <p>Click a part below, or click the 3D neuron.</p>
+    <div class="btn-grid">
+      <button class="pbtn" data-bio="dendrites">Dendrites</button>
+      <button class="pbtn" data-bio="soma">Cell body (soma)</button>
+      <button class="pbtn" data-bio="axon">Axon</button>
+      <button class="pbtn" data-bio="myelin">Myelin sheath</button>
+      <button class="pbtn" data-bio="terminals">Axon terminals</button>
+      <button class="pbtn" data-bio="synapse">Synapse</button>
+    </div>
+    <div class="info-box" id="bio-info"><h4>Select a part</h4><p>Its explanation will appear here.</p></div>
+    <div class="btn-row"><button class="btn primary" id="fire-btn">⚡ Fire a nerve impulse</button></div>
+
+    <h3>One signal, step by step</h3>
+    <ol class="steps">
+      <li><b>Arrival at the dendrites.</b> Other neurons release chemical messengers (neurotransmitters). They bind to receptors on the dendrites and open tiny ion channels, creating a small voltage change.</li>
+      <li><b>Adding up in the cell body.</b> Thousands of small signals reach the soma. Excitatory signals push the cell toward firing, inhibitory ones push it away. The soma adds them all up.</li>
+      <li><b>The threshold.</b> The resting voltage is about −70 mV. If the total pushes it to about −55 mV, the neuron fires. Below that, nothing happens. This is all-or-nothing.</li>
+      <li><b>The action potential.</b> Sodium channels open and the voltage jumps to about +30 mV within a millisecond. Potassium channels reset it. This sharp pulse is the nerve impulse.</li>
+      <li><b>Travel down the axon.</b> In myelinated fibres the impulse jumps between the gaps called nodes of Ranvier. This can reach around 100 metres per second.</li>
+      <li><b>Crossing the synapse.</b> Calcium makes vesicles release neurotransmitter across a gap of about 20 nanometres. The chemical starts a new signal in the next cell.</li>
+    </ol>
+    <p class="note">Figures are typical textbook values. Check them against your own book before you submit.</p>
+  </div>
+</section>
+
+<!-- ===================== NETWORK ===================== -->
+<section class="sec" id="network" data-view="network" data-group="network">
+  <div class="panel">
+    <div class="eyebrow">Section 3 · Computer Science</div>
+    <h2>The Artificial Neural Network</h2>
+    <p>An artificial neural network is a set of simple maths units arranged in layers. Each unit multiplies its inputs by
+    <b>weights</b>, adds a <b>bias</b>, and produces one number. Many units together can recognise patterns.</p>
+
+    <h3>The three layers</h3>
+    <ul class="howto">
+      <li><b>Input layer (x1, x2, x3):</b> the data going in, such as pixel brightness or a sensor reading.</li>
+      <li><b>Hidden layer (h1, h2, h3):</b> each neuron combines the inputs its own way, so each one detects a different pattern.</li>
+      <li><b>Output layer (y):</b> the final answer, always between 0 and 1.</li>
+    </ul>
+
+    <h3>How to read the picture</h3>
+    <ul class="howto">
+      <li><span class="pos">Blue lines</span> are positive weights (they encourage the next neuron).</li>
+      <li><span class="neg">Magenta lines</span> are negative weights (they discourage it).</li>
+      <li>Thicker, brighter lines mean bigger weights. Brighter neurons mean higher values.</li>
+      <li>The yellow dots are signals. They move from inputs to hidden neurons, then to the output.</li>
+    </ul>
+
+    <h3>Click a neuron</h3>
+    <div class="btn-grid">
+      <button class="pbtn" data-ann="in1">Input x1</button>
+      <button class="pbtn" data-ann="in2">Input x2</button>
+      <button class="pbtn" data-ann="in3">Input x3</button>
+      <button class="pbtn" data-ann="h1">Hidden h1</button>
+      <button class="pbtn" data-ann="h2">Hidden h2</button>
+      <button class="pbtn" data-ann="h3">Hidden h3</button>
+      <button class="pbtn" data-ann="out">Output y</button>
+    </div>
+    <div class="info-box" id="ann-info"><h4>Select a neuron</h4><p>Its explanation will appear here.</p></div>
+
+    <h3>Brain connection</h3>
+    <p>A weight plays the same role as a synapse. Learning in both systems means changing these strengths.</p>
+  </div>
+</section>
+
+<!-- ===================== SIMULATION ===================== -->
+<section class="sec" id="sim" data-view="sim" data-group="sim">
+  <div class="panel">
+    <div class="eyebrow">Section 4 · Simulation</div>
+    <h2>Watch the Network Think</h2>
+    <p>Move the three inputs. The network turns them into one answer between 0 and 1.
+    Press <b>Learn</b> and it adjusts itself to get closer to the target.</p>
+
+    <div class="status" id="sim-status"></div>
+
+    <div class="outcard">
+      <div class="outlabel">Network's answer (output y)</div>
+      <div class="bigout" id="bigOut">–</div>
+      <div class="bar"><div id="outBar"></div></div>
+      <div class="outmeta"><span id="outTarget"></span></div>
+      <div class="outverdict" id="outVerdict"></div>
+    </div>
+
+    <h3>What the hidden neurons are doing</h3>
+    <div class="hcards" id="hidden-cards"></div>
+
+    <h3>Inputs (what goes in)</h3>
+    <div id="controls-inputs"></div>
+
+    <h3>Buttons</h3>
+    <div class="btn-row">
+      <button class="btn primary" id="start-btn">▶ Start</button>
+      <button class="btn" id="pause-btn">⏸ Pause</button>
+      <button class="btn danger" id="reset-btn">⟲ Reset all</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn" id="learn-1-btn">Learn: 1 step</button>
+      <button class="btn" id="learn-100-btn">Learn: 100 steps</button>
+    </div>
+    <div class="log" id="train-log"></div>
+
+    <details class="fold">
+      <summary>What do the formulas mean? (plain English)</summary>
+      <div class="fcard"><code>z = w1·x1 + w2·x2 + w3·x3 + b</code>
+        <p>Multiply each input by its weight (how much it matters), add them up, then add the bias <i>b</i> (a shift).</p></div>
+      <div class="fcard"><code>a = σ(z) = 1 / (1 + e^(−z))</code>
+        <p>Squash the number into 0 to 1. Large positive gives near 1, very negative gives near 0, zero gives 0.5.</p></div>
+      <div class="fcard"><code>y = σ(v1·h1 + v2·h2 + v3·h3 + b2)</code>
+        <p>The same idea for the output, using the hidden values h1, h2, h3 and the output weights v.</p></div>
+      <div class="fcard"><code>error = (y − target)²</code>
+        <p>How far the answer is from what we want. Zero is perfect.</p></div>
+      <div class="fcard"><code>new weight = old weight − 0.5 × (its share of the error)</code>
+        <p>Learning nudges each weight a little in the direction that makes the error smaller. This is backpropagation.</p></div>
+    </details>
+
+    <details class="fold">
+      <summary>Advanced: change every weight and bias</summary>
+      <div id="controls-adv"></div>
+    </details>
+
+    <details class="fold">
+      <summary>Full step-by-step calculation (for your report)</summary>
+      <div class="table-wrap"><table class="calc" id="steps"></table></div>
+    </details>
+  </div>
+</section>
+
+<!-- ===================== BRAIN vs COMPUTER ===================== -->
+<section class="sec" id="brain" data-view="brain" data-group="compare">
+  <div class="panel">
+    <div class="eyebrow">Section 5 · Brain vs Computer</div>
+    <h2>The Human Brain</h2>
+    <p>The model on the right is a simplified brain. Drag to turn it. The pink folds are the cortex, the outer layer where most thinking happens.</p>
+    <h3>Main parts (labelled in 3D)</h3>
+    <ul class="howto">
+      <li><b>Frontal lobe:</b> planning, decisions, personality and speech production.</li>
+      <li><b>Parietal lobe:</b> touch, body position and handling numbers.</li>
+      <li><b>Temporal lobe:</b> hearing, language and memory.</li>
+      <li><b>Occipital lobe:</b> vision.</li>
+      <li><b>Cerebellum:</b> balance and smooth movement.</li>
+      <li><b>Brainstem:</b> breathing, heartbeat and sleep.</li>
+    </ul>
+    <div class="fgrid">
+      <div class="fcard2"><h4>Parallel</h4><p>About 86 billion neurons work at the same time.</p></div>
+      <div class="fcard2"><h4>Low power</h4><p>Roughly 20 watts for the whole brain.</p></div>
+      <div class="fcard2"><h4>Learns by rewiring</h4><p>Synapses strengthen or weaken with use.</p></div>
+      <div class="fcard2"><h4>Damage tolerant</h4><p>It can lose parts and keep working, often with gradual decline.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="compnet" data-view="compnet" data-group="compare">
+  <div class="panel">
+    <div class="eyebrow">Section 5 · Brain vs Computer</div>
+    <h2>The Computer Neural Network</h2>
+    <p>On the right is a computer neural network. The chip at the top is the processor (CPU or GPU). It works through the layers
+    one after another, doing multiply-and-add operations very quickly.</p>
+    <h3>How it differs</h3>
+    <ul class="howto">
+      <li><b>Fast arithmetic:</b> billions of exact operations per second.</li>
+      <li><b>Power hungry:</b> one high-end GPU can use hundreds of watts.</li>
+      <li><b>Learns by backpropagation:</b> weights change using calculus and the output error.</li>
+      <li><b>Separate memory:</b> weights live in memory and move to the processor.</li>
+      <li><b>Designed, not grown:</b> engineers choose the layers and their sizes.</li>
+    </ul>
+    <div class="fgrid">
+      <div class="fcard2"><h4>Fast</h4><p>Exact numbers, billions of operations a second.</p></div>
+      <div class="fcard2"><h4>Power hungry</h4><p>Hundreds of watts per GPU; data centres use megawatts.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec wide" id="features" data-view="features" data-group="compare">
+  <div class="panel">
+    <div class="eyebrow">Section 5 · Summary</div>
+    <h2>Feature-by-feature comparison</h2>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Feature</th><th>Human brain</th><th>Computer neural network</th></tr>
+        <tr><td>Basic unit</td><td>Biological neuron (a cell)</td><td>Artificial neuron (a maths function)</td></tr>
+        <tr><td>Number of units</td><td>~86 billion neurons</td><td>Thousands to billions</td></tr>
+        <tr><td>Connections</td><td>~100 trillion synapses</td><td>Weights stored as numbers</td></tr>
+        <tr><td>Signal type</td><td>Electrical spikes and chemicals</td><td>Numbers passed through maths</td></tr>
+        <tr><td>Processing</td><td>Massively parallel</td><td>Parallel on GPUs, layer by layer</td></tr>
+        <tr><td>Speed per operation</td><td>Slow (milliseconds per spike)</td><td>Very fast (billions per second)</td></tr>
+        <tr><td>Power use</td><td>About 20 watts</td><td>Hundreds of watts to megawatts</td></tr>
+        <tr><td>Learning</td><td>Rewiring synapses over life</td><td>Backpropagation, gradient descent</td></tr>
+        <tr><td>Memory</td><td>Stored in the connections</td><td>Separate memory</td></tr>
+        <tr><td>Precision</td><td>Noisy and approximate</td><td>Exact when needed</td></tr>
+        <tr><td>Fault tolerance</td><td>Degrades gradually</td><td>Needs designed error protection</td></tr>
+        <tr><td>Understanding</td><td>Consciousness is still not understood</td><td>No understanding, follows its maths</td></tr>
+      </table>
+    </div>
+    <p class="note">The artificial network is inspired by the brain but is far simpler. Both learn by changing connection strengths.</p>
+  </div>
+</section>
+
+<script src="js/main.js"></script>
+</body>
+</html>
