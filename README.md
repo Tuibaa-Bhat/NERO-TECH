@@ -59,7 +59,7 @@ NERO-TECH/
 
 ## 🌐 Live Website
 
-[NEUROTECH – Visit Website](https://tuibaa-bhat.github.io/NERO-TECH/)
+[NEUROTECH – Visit Website]http://127.0.0.1:5500/NEUROTECH-v6/neurotech-v6/index.html
 
 *The link requires successful GitHub Pages deployment.*
 
