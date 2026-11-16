@@ -1,84 +1,56 @@
 # 🧠 NEUROTECH – Brain vs Computer
 
-### Interactive 3D Educational Website
+An interactive 3D website that compares the human brain with a computer neural network. It combines biology and computer science.
 
-## 📌 About the Project
+🔗 **Live website:** https://tuibaa-bhat.github.io/NERO-TECH/
 
-NEUROTECH is an interactive educational website that explores the similarities and differences between the human brain and computer neural networks.
+## What's inside
 
-It combines Biology and Computer Science through 3D visualizations, interactive explanations, and neural network simulations.
+| Section | What you can do |
+|---|---|
+| **Home** | Overview with key facts: 86 billion neurons, 100 trillion connections, 20 watts |
+| **Neuron** | Click the parts of a 3D neuron and fire a nerve impulse |
+| **Network** | Explore a 3D artificial neural network (input, hidden, output layers) |
+| **Simulation** | Change the inputs, watch the network calculate, and press Learn to train it |
+| **Brain vs Computer** | A labelled 3D brain, a computer network, and a feature-by-feature comparison table |
 
-## 🎯 Objectives
+## How to use
 
-- Understand the structure and functions of biological neurons.
-- Learn how artificial neural networks work.
-- Explore how signals travel through neurons.
-- Understand neural network calculations and learning.
-- Compare the human brain with computer neural networks.
+- Scroll with the mouse wheel or a three-finger swipe. Each section is one screen.
+- Drag to rotate the 3D model.
+- Use **−**, **+** and **Reset** at the top right to zoom.
+- The green **● RUNNING** badge shows when signals are moving. Press **Pause** to stop them.
 
-## ✨ Features
+## Run it on your computer
 
-1. **Home:** Introduction to NEUROTECH.
-2. **Biological Neuron:** Learn about dendrites, soma, axon, myelin sheath and synapse.
-3. **Artificial Neural Network:** Understand input, hidden and output layers.
-4. **Simulation:** Experiment with inputs and network learning.
-5. **Brain vs Computer:** Explore the differences between biological and artificial systems.
-6. **3D Visualization:** Rotate, zoom and explore interactive models.
+1. Download or clone this repository.
+2. Open the folder in VS Code.
+3. Right-click `index.html` and choose **Open with Live Server**, or just double-click `index.html`.
 
-## 🛠️ Technologies Used
+An internet connection is needed once to load the 3D library and the font.
 
-- HTML5
-- CSS3
-- JavaScript
-- Three.js
-- Google Fonts
+## Project files
 
-## 📂 Project Structure
-
-```text
+```
 NERO-TECH/
-│
-├── index.html
-├── README.md
-│
-├── css/
-│   └── style.css
-│
-└── js/
-    └── main.js
+├── index.html   # page structure and content
+├── style.css    # design and layout
+├── main.js      # 3D scenes and the neural network simulation
+└── README.md
 ```
 
-## 🚀 How to Run
+## Built with
 
-1. Download or clone the repository.
-2. Open the project in Visual Studio Code.
-3. Install the Live Server extension.
-4. Right-click `index.html`.
-5. Select **Open with Live Server**.
-6. Explore the website.
+- HTML, CSS and JavaScript
+- [Three.js](https://threejs.org/) for the 3D graphics
+- [Inter](https://fonts.google.com/specimen/Inter) font from Google Fonts
 
-## 🌐 Live Website
+## Publish with GitHub Pages
 
-[NEUROTECH – Visit Website]http://127.0.0.1:5500/NEUROTECH-v6/neurotech-v6/index.html
+1. Go to **Settings → Pages**.
+2. Set the source to **Deploy from a branch**, then choose `main` and `/ (root)`.
+3. Click **Save**. The site goes live in 1–2 minutes.
 
-*The link requires successful GitHub Pages deployment.*
+## Note
 
-## 🎓 Project Details
-
-**Project Name:** NEUROTECH – Brain vs Computer
-
-**Institution:** Jain (Deemed-to-be University)
-
-**Faculty:** Faculty of Engineering and Technology
-
-**Domain:** Biology and Computer Science
-
-**Project Type:** Interactive Educational Website
-
-## 📖 Conclusion
-
-NEUROTECH provides an engaging way to understand biological neurons and artificial neural networks. Through interactive simulations and 3D visualizations, it makes complex concepts easier to learn.
-
----
-
-**NEUROTECH – Connecting Biology with Technology. 🧠💻**
+The biology figures are typical textbook values. Check them against your own textbook before using them in a report.
